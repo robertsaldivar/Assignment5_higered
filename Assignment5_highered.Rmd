@@ -1,0 +1,34 @@
+---
+title: "Assignment5-Higheredu"
+author: "Robert Saldivar"
+date: "November 26, 2018"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Loading packages and reading in data files
+
+library(tidyverse)
+library(ggpubr)
+library(stargazer)
+library(RColorBrewer)
+library(extrafont)
+library(car)
+library(effsize)
+library(knitr)
+library(kableExtra)
+library(onewaytests)
+library(ggsignif)
+library(pwr)
+library(vcdExtra)
+
+Phds_1985_2015 <- read_csv("PhDs by Field 1985 - 2015-edits.csv")
+Grads_1967_2015 <- read_csv("Grad enrollment 1967 - 2015-edits.csv")
+Median_Salary_Postdocs <- read_csv("Median salary for doctoral recipients-edits.csv")
+Faculty_Salary <- read_csv("Faculty salary data (2008 - 2009 survey)-edits.csv")
+```
+
