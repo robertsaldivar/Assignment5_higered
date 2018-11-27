@@ -32,3 +32,24 @@ Median_Salary_Postdocs <- read_csv("Median salary for doctoral recipients-edits.
 Faculty_Salary <- read_csv("Faculty salary data (2008 - 2009 survey)-edits.csv")
 ```
 
+```{r}
+#Inital data exploration
+
+```
+
+```{r}
+#Trends in Graduate Enrollment
+```
+
+```{r}
+#Shifts in female PhD recipients
+```
+
+```{r}
+#Male and female starting salaries
+```
+
+```{r}
+#Exploring professors salaries in 2015
+```
+
