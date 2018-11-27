@@ -88,3 +88,11 @@ Faculty_Salary <- read_csv("Faculty salary data (2008 - 2009 survey)-edits.csv")
 
 ```
 
+```{r}
+# Wrangle professor salaries data
+```
+
+```{r}
+# Professor salaries relationships and model
+```
+
