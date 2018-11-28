@@ -2,14 +2,16 @@
 title: "Assignment5-Higheredu"
 author: "Robert Saldivar"
 date: "November 26, 2018"
-output: word_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r, include=FALSE}
 #Loading packages and reading in data files
 
 library(tidyverse)
@@ -36,6 +38,23 @@ Faculty_Salary <- read_csv("Faculty salary data (2008 - 2009 survey)-edits.csv")
 ```{r}
 #Inital data exploration grad enrollment
 
+Grad_male_hist <- ggplot(Grads_1967_2015, aes(x=Total_Males)) +
+  geom_histogram()
+
+Grad_male_qq <- ggplot(Grads_1967_2015, aes(sample=Total_Males)) +
+  geom_qq()
+
+Grad_male_hist
+Grad_male_qq
+
+Grad_female_hist <- ggplot(Grads_1967_2015, aes(x=Total_Females)) +
+  geom_histogram()
+
+Grad_female_qq <- ggplot(Grads_1967_2015, aes(sample=Total_Females)) +
+  geom_qq()
+
+Grad_female_hist
+Grad_female_qq
 
 
 ```
