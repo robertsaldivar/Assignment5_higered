@@ -61,12 +61,24 @@ Grad_female_qq
 
 ```{r}
 #Wrangle Grad enrollment data
+
+
 ```
 
 
 ```{r}
 #Trends in Graduate Enrollment
 # Create a graph showing the trend of male and female grad enrollment
+enrollment_graph67_15 <- ggplot(Grads_1967_2015, aes(x=Year)) +
+  geom_line(aes(y=Total_Females), color="red") + 
+  geom_line(aes(y=Total_Males), color="blue") +
+  theme_classic() + 
+  labs(x="Year", y="Student Population")+
+  ggtitle("Change in Male and Female Graduate Enrollment from 1967-2015")
+  
+
+enrollment_graph67_15
+
 
 # run an anova of grad enrollment
 ```
