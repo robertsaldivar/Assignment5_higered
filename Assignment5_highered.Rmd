@@ -66,7 +66,8 @@ Grad_female_qq
 ```
 
 provisional code for adding legend to a graph
-legend(2015, 1727534, legend=c("Total Females", "Total Males"), col=c("red", "navy"), lty=1:2, cex=0.8, plot.new=TRUE)
++
+  legend("right", legend=c("Total Females", "Total Males"), col=c("red", "navy"), lty=1:2, cex=0.8)
 
 ```{r}
 #Trends in Graduate Enrollment
