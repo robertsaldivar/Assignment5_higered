@@ -65,22 +65,54 @@ Grad_female_qq
 
 ```
 
+provisional code for adding legend to a graph
+legend(2015, 1727534, legend=c("Total Females", "Total Males"), col=c("red", "navy"), lty=1:2, cex=0.8, plot.new=TRUE)
 
 ```{r}
 #Trends in Graduate Enrollment
 # Create a graph showing the trend of male and female grad enrollment
-enrollment_graph67_15 <- ggplot(Grads_1967_2015, aes(x=Year)) +
+#Graph of total male verse female graph
+total_enrollment_graph67_15 <- ggplot(Grads_1967_2015, aes(x=Year)) +
   geom_line(aes(y=Total_Females), color="red") + 
-  geom_line(aes(y=Total_Males), color="blue") +
+  geom_line(aes(y=Total_Males), color="navy") +
   theme_classic() + 
   labs(x="Year", y="Student Population")+
-  ggtitle("Change in Male and Female Graduate Enrollment from 1967-2015")
+  ggtitle("Change in Male and Female Graduate Enrollment from 1967-2015") 
   
+  
+total_enrollment_graph67_15
 
-enrollment_graph67_15
+#graph of fulltime male v female enrollment
+full_enroll_graph <- ggplot(Grads_1967_2015, aes(x=Year)) +
+  geom_line(aes(y=Females_Full_time), color="violet") + 
+  geom_line(aes(y=Males_Full_time), color="gold")
 
+full_enroll_graph
 
-# run an anova of grad enrollment
+#graph of parttime enrollment male v female
+part_enroll_graph <- ggplot(Grads_1967_2015, aes(x=Year)) +
+  geom_line(aes(y=Females_Part_time), color="pink3") + 
+  geom_line(aes(y=Males_Part_time), color="green")
+
+part_enroll_graph
+
+#part and fulltime enrollment male v female
+full_part_enrollgraph <- ggplot(Grads_1967_2015, aes(x=Year)) +
+  geom_line(aes(y=Females_Part_time), color="pink3") + 
+  geom_line(aes(y=Males_Part_time), color="green") + 
+  geom_line(aes(y=Females_Full_time), color="violet") + 
+  geom_line(aes(y=Males_Full_time), color="gold") 
+
+full_part_enrollgraph
+
+#private vs public enrollment rates
+private_public_enrollgraph <- ggplot(Grads_1967_2015, aes(x=Year)) +
+  geom_line(aes(y=Public), color="grey3") + 
+  geom_line(aes(y=Private_Total), color="purple") +
+  theme_bw()
+
+private_public_enrollgraph
+
 ```
 
 ```{r}
