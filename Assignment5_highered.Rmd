@@ -60,15 +60,6 @@ Grad_female_qq
 
 ```
 
-```{r}
-#Wrangle Grad enrollment data
-
-
-```
-
-provisional code for adding legend to a graph
-+
-  legend("right", legend=c("Total Females", "Total Males"), col=c("red", "navy"), lty=1:2, cex=0.8)
 
 ```{r}
 #Trends in Graduate Enrollment
@@ -118,8 +109,9 @@ private_public_enrollgraph
 ```
 
 ```{r}
-#Explore PhD data
+#Run significance tests of on enrollment data
 ```
+
 
 ```{r}
 #Wrangle PhD data
@@ -135,10 +127,10 @@ Phd_new <- Phds_1985_2015 %>%
 PhDs_Clean$Year <- factor(PhDs_Clean$Year)
 
 Phd_graph <- ggplot(PhDs_Clean, aes(x=Year))  +
-  geom_col(aes(y=Female_education, fill="Female_education")) +
-  geom_col(aes(y=Female_Humanities, fill="Female_Humanities")) +
-  geom_col(aes(y=Female_physical_sci, fill="Female_physical_sci")) +
-  geom_col(aes(y=Female_engineering, fill="Female_engineering")) +
+  geom_point(aes(y=Female_education, color="Female_education", size=2)) +
+  geom_point(aes(y=Female_Humanities, color="Female_Humanities", size=2)) +
+  geom_point(aes(y=Female_physical_sci, color="Female_physical_sci", size=2)) +
+  geom_point(aes(y=Female_engineering, color="Female_engineering", size=2)) +
   theme_classic()
   
 Phd_graph
@@ -152,22 +144,40 @@ Phd_table <- kable(PhDs_Clean2) %>%
 
 Phd_table
 
-# Run anova on female phds in 1985, 2000, 2015 in Physical and Earth Science, Education, Engineering, Arts and Humanities
 
 ```
 
 ```{r}
+#Run Significance test on PhD data
+```
+
+
+```{r}
 # Explore starting salaries data
+
+median_salary_graph <- ggplot(Median_Salary_Postdocs, aes(x=Field_of_study)) +
+  geom_point(aes(y=Employment_Male, color="Employment_Male", size=0.5)) +
+  geom_point(aes(y=Employment_female, color="Employment_female", size=0.5)) +
+  geom_point(aes(y=Postdoctoral_study_Male, color="Postdoctoral_study_Male", size=0.5)) +
+  geom_point(aes(y=Postdoctoral_study_female, color="Postdoctoral_study_female", size=0.5)) +
+  scale_x_discrete()
+
+median_salary_graph
 
 ```
 
 ```{r}
 #Wrangle starting salaries data
+starting_salaries_employment <- Median_Salary_Postdocs %>%
+  select('Field_of_study', 'Employment_Male', 'Employment_female')
+
+starting_salaries_postdoc <- Median_Salary_Postdocs %>%
+  select('Field_of_study', 'Postdoctoral_study_Male', 'Postdoctoral_study_female')
 
 ```
 
 ```{r}
-#Male and female starting salaries
+#Male and female starting salaries testing
 
 ```
 
