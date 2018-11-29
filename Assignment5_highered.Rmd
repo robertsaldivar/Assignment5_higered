@@ -195,13 +195,27 @@ postdoc_salary_test
 ```
 
 ```{r}
-#Exploring professors salaries in 2015
+#Exploring professors salaries in
+
+#creating a density graph to show the trend of how much male and female professors make
+prof_salary_graph <- ggplot(Faculty_Salary, aes(x=Salary)) +
+  geom_density(aes(color=Sex, fill=Sex), alpha=0.3) +
+  theme_classic() +
+  labs(x = "Salary (USD)", y = "Density")
+
+prof_salary_graph
+
+#Creating a scatterplot of the salary data
+prof_salary_pointgraph <- ggplot(Faculty_Salary, aes(x=Years_Faculty_Service, y=Salary)) + 
+  geom_point(aes(color=Sex, pch = Discipline)) +
+  theme_classic()
+
+prof_salary_pointgraph
+
+#graph does appear to have some linearity
 
 ```
 
-```{r}
-# Wrangle professor salaries data
-```
 
 ```{r}
 # Professor salaries relationships and model
