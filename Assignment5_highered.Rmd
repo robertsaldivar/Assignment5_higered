@@ -122,6 +122,10 @@ private_public_enrollgraph
 
 ```{r}
 #Wrangle PhD data
+Phd_new <- Phds_1985_2015 %>%
+  select('Field_of_study_and_sex','1985_Number', '2000_Number', '2015_Number') %>%
+  filter(Field_of_study_and_sex !="All fields", Field_of_study_and_sex !="Otherc", Field_of_study_and_sex !="Life sciencesb", Field_of_study_and_sex !="Psychology and social sciences", Field_of_study_and_sex !="Male", Field_of_study_and_sex !="Mathematics and computer sciences", Field_of_study_and_sex !="Female")
+
 ```
 
 ```{r}
