@@ -75,8 +75,8 @@ provisional code for adding legend to a graph
 # Create a graph showing the trend of male and female grad enrollment
 #Graph of total male verse female graph
 total_enrollment_graph67_15 <- ggplot(Grads_1967_2015, aes(x=Year)) +
-  geom_line(aes(y=Total_Females), color="red") + 
-  geom_line(aes(y=Total_Males), color="navy") +
+  geom_line(aes(y=Total_Females, color="Total_Females")) + 
+  geom_line(aes(y=Total_Males, color="Total_Males")) +
   theme_classic() + 
   labs(x="Year", y="Student Population")+
   ggtitle("Change in Male and Female Graduate Enrollment from 1967-2015") 
@@ -86,24 +86,24 @@ total_enrollment_graph67_15
 
 #graph of fulltime male v female enrollment
 full_enroll_graph <- ggplot(Grads_1967_2015, aes(x=Year)) +
-  geom_line(aes(y=Females_Full_time), color="violet") + 
-  geom_line(aes(y=Males_Full_time), color="gold")
+  geom_line(aes(y=Females_Full_time, color="Females_Full_time")) + 
+  geom_line(aes(y=Males_Full_time, color="Males_Full_time"))
 
 full_enroll_graph
 
 #graph of parttime enrollment male v female
 part_enroll_graph <- ggplot(Grads_1967_2015, aes(x=Year)) +
-  geom_line(aes(y=Females_Part_time), color="pink3") + 
-  geom_line(aes(y=Males_Part_time), color="green")
+  geom_line(aes(y=Females_Part_time, color="Females_Part_time")) + 
+  geom_line(aes(y=Males_Part_time, color="Males_Part_time"))
 
 part_enroll_graph
 
 #part and fulltime enrollment male v female
 full_part_enrollgraph <- ggplot(Grads_1967_2015, aes(x=Year)) +
-  geom_line(aes(y=Females_Part_time), color="pink3") + 
-  geom_line(aes(y=Males_Part_time), color="green") + 
-  geom_line(aes(y=Females_Full_time), color="violet") + 
-  geom_line(aes(y=Males_Full_time), color="gold") 
+  geom_line(aes(y=Females_Part_time, color="Females_Part_time")) + 
+  geom_line(aes(y=Males_Part_time, color="Males_Part_time")) + 
+  geom_line(aes(y=Females_Full_time, color="Females_Full_time")) + 
+  geom_line(aes(y=Males_Full_time, color="Males_Full_time")) 
 
 full_part_enrollgraph
 
@@ -132,8 +132,25 @@ Phd_new <- Phds_1985_2015 %>%
 ```{r}
 #Shifts in female PhD recipients
 # Create graph or table of female Phd recipients
+PhDs_Clean$Year <- factor(PhDs_Clean$Year)
 
-Phd_graph <- ggplot(PhDs_clean
+Phd_graph <- ggplot(PhDs_Clean, aes(x=Year))  +
+  geom_col(aes(y=Female_education, fill="Female_education")) +
+  geom_col(aes(y=Female_Humanities, fill="Female_Humanities")) +
+  geom_col(aes(y=Female_physical_sci, fill="Female_physical_sci")) +
+  geom_col(aes(y=Female_engineering, fill="Female_engineering")) +
+  theme_classic()
+  
+Phd_graph
+# Graph still needs work
+#Create table showing shift
+PhDs_Clean2 <- PhDs_Clean %>%
+  select(Year, Female_physical_sci, Female_engineering, Female_education, Female_Humanities)
+
+Phd_table <- kable(PhDs_Clean2) %>%
+  kable_styling(bootstrap_options = c("striped"), full_width = FALSE)
+
+Phd_table
 
 # Run anova on female phds in 1985, 2000, 2015 in Physical and Earth Science, Education, Engineering, Arts and Humanities
 
