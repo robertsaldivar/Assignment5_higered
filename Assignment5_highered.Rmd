@@ -177,7 +177,20 @@ starting_salaries_postdoc <- Median_Salary_Postdocs %>%
 ```
 
 ```{r}
-#Male and female starting salaries testing
+#Male and female starting salaries significance testing
+#running a mann-whittney u test for employment salaries male vs female
+employment_salary_test <- wilcox.test(starting_salaries_employment$Employment_Male, starting_salaries_employment$Employment_female)
+employment_salary_test
+
+#There is not a significant difference between starting female and male salaries
+
+#running a mann-whittney u test for postdoc salaries male vs female
+postdoc_salary_test <- wilcox.test(starting_salaries_postdoc$Postdoctoral_study_Male, starting_salaries_postdoc$Postoctoral_study_female)
+postdoc_salary_test
+
+#There is a significant difference between starting female and male salaries in post docs.
+
+# using mann-whittney u because we are comparing medians
 
 ```
 

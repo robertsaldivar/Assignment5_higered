@@ -319,7 +319,35 @@ starting_salaries_employment &lt;- Median_Salary_Postdocs %&gt;%
 
 starting_salaries_postdoc &lt;- Median_Salary_Postdocs %&gt;%
   select('Field_of_study', 'Postdoctoral_study_Male', 'Postdoctoral_study_female')</code></pre>
-<pre class="r"><code>#Male and female starting salaries testing</code></pre>
+<pre class="r"><code>#Male and female starting salaries significance testing
+#running a mann-whittney u test for employment salaries male vs female
+employment_salary_test &lt;- wilcox.test(starting_salaries_employment$Employment_Male, starting_salaries_employment$Employment_female)</code></pre>
+<pre><code>## Warning in wilcox.test.default(starting_salaries_employment
+## $Employment_Male, : cannot compute exact p-value with ties</code></pre>
+<pre class="r"><code>employment_salary_test</code></pre>
+<pre><code>## 
+##  Wilcoxon rank sum test with continuity correction
+## 
+## data:  starting_salaries_employment$Employment_Male and starting_salaries_employment$Employment_female
+## W = 136.5, p-value = 0.3289
+## alternative hypothesis: true location shift is not equal to 0</code></pre>
+<pre class="r"><code>#There is not a significant difference between starting female and male salaries
+
+#running a mann-whittney u test for postdoc salaries male vs female
+postdoc_salary_test &lt;- wilcox.test(starting_salaries_postdoc$Postdoctoral_study_Male, starting_salaries_postdoc$Postoctoral_study_female)</code></pre>
+<pre><code>## Warning: Unknown or uninitialised column: 'Postoctoral_study_female'.</code></pre>
+<pre><code>## Warning in wilcox.test.default(starting_salaries_postdoc
+## $Postdoctoral_study_Male, : cannot compute exact p-value with ties</code></pre>
+<pre class="r"><code>postdoc_salary_test</code></pre>
+<pre><code>## 
+##  Wilcoxon signed rank test with continuity correction
+## 
+## data:  starting_salaries_postdoc$Postdoctoral_study_Male
+## V = 120, p-value = 0.0006998
+## alternative hypothesis: true location is not equal to 0</code></pre>
+<pre class="r"><code>#There is a significant difference between starting female and male salaries in post docs.
+
+# using mann-whittney u because we are comparing medians</code></pre>
 <pre class="r"><code>#Exploring professors salaries in 2015</code></pre>
 <pre class="r"><code># Wrangle professor salaries data</code></pre>
 <pre class="r"><code># Professor salaries relationships and model</code></pre>
