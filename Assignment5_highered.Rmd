@@ -33,6 +33,7 @@ Phds_1985_2015 <- read_csv("PhDs by Field 1985 - 2015-edits.csv")
 Grads_1967_2015 <- read_csv("Grad enrollment 1967 - 2015-edits.csv")
 Median_Salary_Postdocs <- read_csv("Median salary for doctoral recipients-edits.csv")
 Faculty_Salary <- read_csv("Faculty salary data (2008 - 2009 survey)-edits.csv")
+PhDs_Clean <- read_csv("PhDs_Clean.csv")
 ```
 
 ```{r}
@@ -131,6 +132,8 @@ Phd_new <- Phds_1985_2015 %>%
 ```{r}
 #Shifts in female PhD recipients
 # Create graph or table of female Phd recipients
+
+Phd_graph <- ggplot(PhDs_clean
 
 # Run anova on female phds in 1985, 2000, 2015 in Physical and Earth Science, Education, Engineering, Arts and Humanities
 
