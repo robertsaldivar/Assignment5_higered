@@ -240,8 +240,19 @@ summary(Faculty_salary_lm1)
 ```
 
 ```{r}
-# Faculty salaries model 1
+# Faculty Salaries model 2
 
-Faculty_salary_lm1 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex, data = Faculty_Salary)
+#adjusting the factor levels for Faculty Rank, Discipline and Sex
+Faculty_Salary$Faculty_Rank <- factor(Faculty_Salary$Faculty_Rank)
+Faculty_Salary$Discipline <- factor(Faculty_Salary$Discipline)
+Faculty_Salary$Sex <- factor(Faculty_Salary$Sex)
+
+Faculty_Salary$Faculty_Rank <- fct_relevel(Faculty_Salary$Faculty_Rank, "Prof")
+Faculty_Salary$Sex <- fct_relevel(Faculty_Salary$Sex, "Male")
+
+Faculty_salary_lm2 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex, data = Faculty_Salary)
+
+summary(Faculty_salary_lm2)
+
 ```
 

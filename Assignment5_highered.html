@@ -408,9 +408,43 @@ summary(Faculty_salary_lm1)</code></pre>
 ## Residual standard error: 22540 on 390 degrees of freedom
 ## Multiple R-squared:  0.4547, Adjusted R-squared:  0.4463 
 ## F-statistic:  54.2 on 6 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code># Faculty salaries model 1
+<pre class="r"><code># Faculty Salaries model 2
 
-Faculty_salary_lm1 &lt;- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex, data = Faculty_Salary)</code></pre>
+#adjusting the factor levels for Faculty Rank, Discipline and Sex
+Faculty_Salary$Faculty_Rank &lt;- factor(Faculty_Salary$Faculty_Rank)
+Faculty_Salary$Discipline &lt;- factor(Faculty_Salary$Discipline)
+Faculty_Salary$Sex &lt;- factor(Faculty_Salary$Sex)
+
+Faculty_Salary$Faculty_Rank &lt;- fct_relevel(Faculty_Salary$Faculty_Rank, &quot;Prof&quot;)
+Faculty_Salary$Sex &lt;- fct_relevel(Faculty_Salary$Sex, &quot;Male&quot;)
+
+Faculty_salary_lm2 &lt;- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex, data = Faculty_Salary)
+
+summary(Faculty_salary_lm2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + 
+##     Years_Faculty_Service + Sex, data = Faculty_Salary)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -65248 -13211  -1775  10384  99592 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           115804.7     4379.2  26.444  &lt; 2e-16 ***
+## Faculty_RankAssocProf -32158.4     3540.6  -9.083  &lt; 2e-16 ***
+## Faculty_RankAsstProf  -45066.0     4237.5 -10.635  &lt; 2e-16 ***
+## DisciplineB            14417.6     2342.9   6.154 1.88e-09 ***
+## Years_Since_PhD          535.1      241.0   2.220   0.0270 *  
+## Years_Faculty_Service   -489.5      211.9  -2.310   0.0214 *  
+## SexFemale              -4783.5     3858.7  -1.240   0.2158    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 22540 on 390 degrees of freedom
+## Multiple R-squared:  0.4547, Adjusted R-squared:  0.4463 
+## F-statistic:  54.2 on 6 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
 
 
 
