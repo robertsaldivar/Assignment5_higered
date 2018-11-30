@@ -197,6 +197,18 @@ postdoc_salary_test
 ```{r}
 #Exploring professors salaries in
 
+#Creating summary of mean salary based on sex
+
+salary_by_sex <- Faculty_Salary %>%
+  group_by(Sex) %>%
+  summarize(
+    mean_salary = mean(Salary),
+    sd_salary = sd(Salary),
+    Max_salary = max(Salary),
+    min_salary = min(Salary),
+    sample_size = length(Salary)
+  )
+
 #creating a density graph to show the trend of how much male and female professors make
 prof_salary_graph <- ggplot(Faculty_Salary, aes(x=Salary)) +
   geom_density(aes(color=Sex, fill=Sex), alpha=0.3) +
@@ -208,7 +220,8 @@ prof_salary_graph
 #Creating a scatterplot of the salary data
 prof_salary_pointgraph <- ggplot(Faculty_Salary, aes(x=Years_Faculty_Service, y=Salary)) + 
   geom_point(aes(color=Sex, pch = Discipline)) +
-  theme_classic()
+  theme_classic() +
+  facet_wrap(~Sex)
 
 prof_salary_pointgraph
 
@@ -218,6 +231,17 @@ prof_salary_pointgraph
 
 
 ```{r}
-# Professor salaries relationships and model
+# Faculty salaries model 1
+
+Faculty_salary_lm1 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex, data = Faculty_Salary)
+
+summary(Faculty_salary_lm1)
+
+```
+
+```{r}
+# Faculty salaries model 1
+
+Faculty_salary_lm1 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex, data = Faculty_Salary)
 ```
 
