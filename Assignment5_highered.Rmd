@@ -358,6 +358,24 @@ summary(Faculty_salary_lm9)
 #Variable coefficients for years of service and asstprof:years of service don't make logical sense
 ```
 
+```{r}
+#model 10 # Adding interaction between faculty service and years since phd
+
+Faculty_salary_lm10 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex + Years_Faculty_Service*Years_Since_PhD, data = Faculty_Salary)
+
+summary(Faculty_salary_lm10)
+#This Model meets my expectations in terms of vairable coeffienct
+```
+
+```{r}
+#Model 11 #Faculty rank and faculty service & faculty service and years since phd interactions
+Faculty_salary_lm11 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex + Faculty_Rank*Years_Faculty_Service + Years_Faculty_Service*Years_Since_PhD, data = Faculty_Salary)
+
+summary(Faculty_salary_lm11)
+#This model provide acceptable variable coefficents
+```
+
+
 ```{r, echo=FALSE}
 # AIC results
 
@@ -367,13 +385,15 @@ lm4AIC <- AIC(Faculty_salary_lm4)
 lm7AIC <- AIC(Faculty_salary_lm7)
 lm8AIC <- AIC(Faculty_salary_lm8)
 lm9AIC <- AIC(Faculty_salary_lm9)
+lm10AIC <- AIC(Faculty_salary_lm10)
+lm11AIC <- AIC(Faculty_salary_lm11)
 
 ```
 
 ```{r, echo=FALSE, results= 'asis'}
 # Create a regression table
 
-stargazer(Faculty_salary_lm2, Faculty_salary_lm3, Faculty_salary_lm7, Faculty_salary_lm8, type = "html")
+stargazer(Faculty_salary_lm2, Faculty_salary_lm3, Faculty_salary_lm7, Faculty_salary_lm8, Faculty_salary_lm10, Faculty_salary_lm11,  type = "html")
 
 ```
 

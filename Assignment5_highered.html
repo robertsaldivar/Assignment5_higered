@@ -476,28 +476,113 @@ Female_Humanities
 ## Residual standard error: 23610 on 390 degrees of freedom
 ## Multiple R-squared:  0.4014, Adjusted R-squared:  0.3922 
 ## F-statistic: 43.59 on 6 and 390 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>#model 10 # Adding interaction between faculty service and years since phd
+
+Faculty_salary_lm10 &lt;- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex + Years_Faculty_Service*Years_Since_PhD, data = Faculty_Salary)
+
+summary(Faculty_salary_lm10)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + 
+##     Years_Faculty_Service + Sex + Years_Faculty_Service * Years_Since_PhD, 
+##     data = Faculty_Salary)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -59899 -12530  -1537   9649  99328 
+## 
+## Coefficients:
+##                                         Estimate Std. Error t value
+## (Intercept)                           101084.465   7005.391  14.430
+## Faculty_RankAssocProf                 -28217.626   3808.538  -7.409
+## Faculty_RankAsstProf                  -34357.943   5801.366  -5.922
+## DisciplineB                            14316.705   2324.848   6.158
+## Years_Since_PhD                         1032.650    302.783   3.411
+## Years_Faculty_Service                    348.108    376.819   0.924
+## SexFemale                              -5448.304   3836.511  -1.420
+## Years_Since_PhD:Years_Faculty_Service    -24.691      9.217  -2.679
+##                                       Pr(&gt;|t|)    
+## (Intercept)                            &lt; 2e-16 ***
+## Faculty_RankAssocProf                 7.99e-13 ***
+## Faculty_RankAsstProf                  6.98e-09 ***
+## DisciplineB                           1.84e-09 ***
+## Years_Since_PhD                       0.000716 ***
+## Years_Faculty_Service                 0.356161    
+## SexFemale                             0.156374    
+## Years_Since_PhD:Years_Faculty_Service 0.007703 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 22360 on 389 degrees of freedom
+## Multiple R-squared:  0.4646, Adjusted R-squared:  0.4549 
+## F-statistic: 48.21 on 7 and 389 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>#This Model meets my expectations in terms of vairable coeffienct</code></pre>
+<pre class="r"><code>#Model 11 #Faculty rank and faculty service &amp; faculty service and years since phd interactions
+Faculty_salary_lm11 &lt;- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex + Faculty_Rank*Years_Faculty_Service + Years_Faculty_Service*Years_Since_PhD, data = Faculty_Salary)
+
+summary(Faculty_salary_lm11)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + 
+##     Years_Faculty_Service + Sex + Faculty_Rank * Years_Faculty_Service + 
+##     Years_Faculty_Service * Years_Since_PhD, data = Faculty_Salary)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -61113 -12760  -1146   9436  98202 
+## 
+## Coefficients:
+##                                               Estimate Std. Error t value
+## (Intercept)                                  97306.847   7517.427  12.944
+## Faculty_RankAssocProf                       -20955.254   5971.764  -3.509
+## Faculty_RankAsstProf                        -30881.378   8258.629  -3.739
+## DisciplineB                                  14382.336   2323.728   6.189
+## Years_Since_PhD                               1128.473    311.214   3.626
+## Years_Faculty_Service                          474.486    391.917   1.211
+## SexFemale                                    -5337.418   3835.312  -1.392
+## Faculty_RankAssocProf:Years_Faculty_Service   -489.324    309.248  -1.582
+## Faculty_RankAsstProf:Years_Faculty_Service    -216.493   1889.884  -0.115
+## Years_Since_PhD:Years_Faculty_Service          -27.188      9.554  -2.846
+##                                             Pr(&gt;|t|)    
+## (Intercept)                                  &lt; 2e-16 ***
+## Faculty_RankAssocProf                       0.000503 ***
+## Faculty_RankAsstProf                        0.000212 ***
+## DisciplineB                                 1.54e-09 ***
+## Years_Since_PhD                             0.000326 ***
+## Years_Faculty_Service                       0.226757    
+## SexFemale                                   0.164827    
+## Faculty_RankAssocProf:Years_Faculty_Service 0.114398    
+## Faculty_RankAsstProf:Years_Faculty_Service  0.908858    
+## Years_Since_PhD:Years_Faculty_Service       0.004669 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 22350 on 387 degrees of freedom
+## Multiple R-squared:  0.468,  Adjusted R-squared:  0.4556 
+## F-statistic: 37.83 on 9 and 387 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>#This model provide acceptable variable coefficents</code></pre>
 <table style="text-align:center">
 <tr>
-<td colspan="5" style="border-bottom: 1px solid black">
+<td colspan="7" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
-<td colspan="4">
+<td colspan="6">
 <em>Dependent variable:</em>
 </td>
 </tr>
 <tr>
 <td>
 </td>
-<td colspan="4" style="border-bottom: 1px solid black">
+<td colspan="6" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
-<td colspan="4">
+<td colspan="6">
 Salary
 </td>
 </tr>
@@ -516,9 +601,15 @@ Salary
 <td>
 (4)
 </td>
+<td>
+(5)
+</td>
+<td>
+(6)
+</td>
 </tr>
 <tr>
-<td colspan="5" style="border-bottom: 1px solid black">
+<td colspan="7" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
@@ -537,6 +628,12 @@ Faculty_RankAssocProf
 <td>
 -31,081.250<sup>***</sup>
 </td>
+<td>
+-28,217.630<sup>***</sup>
+</td>
+<td>
+-20,955.250<sup>***</sup>
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -553,9 +650,19 @@ Faculty_RankAssocProf
 <td>
 (5,380.149)
 </td>
+<td>
+(3,808.538)
+</td>
+<td>
+(5,971.764)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -582,6 +689,12 @@ Faculty_RankAsstProf
 <td>
 -50,761.590<sup>***</sup>
 </td>
+<td>
+-34,357.940<sup>***</sup>
+</td>
+<td>
+-30,881.380<sup>***</sup>
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -598,9 +711,19 @@ Faculty_RankAsstProf
 <td>
 (6,062.221)
 </td>
+<td>
+(5,801.366)
+</td>
+<td>
+(8,258.629)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -627,6 +750,12 @@ DisciplineB
 <td>
 13,471.420<sup>***</sup>
 </td>
+<td>
+14,316.700<sup>***</sup>
+</td>
+<td>
+14,382.340<sup>***</sup>
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -643,9 +772,19 @@ DisciplineB
 <td>
 (2,318.392)
 </td>
+<td>
+(2,324.848)
+</td>
+<td>
+(2,323.728)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -670,6 +809,12 @@ Years_Since_PhD
 </td>
 <td>
 </td>
+<td>
+1,032.650<sup>***</sup>
+</td>
+<td>
+1,128.473<sup>***</sup>
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -684,9 +829,19 @@ Years_Since_PhD
 </td>
 <td>
 </td>
+<td>
+(302.783)
+</td>
+<td>
+(311.214)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -713,6 +868,12 @@ Years_Faculty_Service
 <td>
 -52.364
 </td>
+<td>
+348.108
+</td>
+<td>
+474.486
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -729,9 +890,19 @@ Years_Faculty_Service
 <td>
 (121.560)
 </td>
+<td>
+(376.819)
+</td>
+<td>
+(391.917)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -758,6 +929,12 @@ SexFemale
 <td>
 -4,748.696
 </td>
+<td>
+-5,448.304
+</td>
+<td>
+-5,337.418
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -774,9 +951,19 @@ SexFemale
 <td>
 (3,886.294)
 </td>
+<td>
+(3,836.511)
+</td>
+<td>
+(3,835.312)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -801,6 +988,11 @@ Faculty_RankAssocProf:Years_Faculty_Service
 <td>
 -261.375
 </td>
+<td>
+</td>
+<td>
+-489.324
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -815,9 +1007,18 @@ Faculty_RankAssocProf:Years_Faculty_Service
 <td>
 (307.500)
 </td>
+<td>
+</td>
+<td>
+(309.248)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -842,6 +1043,11 @@ Faculty_RankAsstProf:Years_Faculty_Service
 <td>
 987.921
 </td>
+<td>
+</td>
+<td>
+-216.493
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -856,9 +1062,71 @@ Faculty_RankAsstProf:Years_Faculty_Service
 <td>
 (1,871.212)
 </td>
+<td>
+</td>
+<td>
+(1,889.884)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Years_Since_PhD:Years_Faculty_Service
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+-24.691<sup>***</sup>
+</td>
+<td>
+-27.188<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(9.217)
+</td>
+<td>
+(9.554)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -885,6 +1153,12 @@ Constant
 <td>
 121,451.200<sup>***</sup>
 </td>
+<td>
+101,084.500<sup>***</sup>
+</td>
+<td>
+97,306.850<sup>***</sup>
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -901,6 +1175,12 @@ Constant
 <td>
 (3,464.400)
 </td>
+<td>
+(7,005.391)
+</td>
+<td>
+(7,517.427)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -913,14 +1193,24 @@ Constant
 </td>
 <td>
 </td>
+<td>
+</td>
+<td>
+</td>
 </tr>
 <tr>
-<td colspan="5" style="border-bottom: 1px solid black">
+<td colspan="7" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 Observations
+</td>
+<td>
+397
+</td>
+<td>
+397
 </td>
 <td>
 397
@@ -951,6 +1241,12 @@ R<sup>2</sup>
 <td>
 0.449
 </td>
+<td>
+0.465
+</td>
+<td>
+0.468
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -967,6 +1263,12 @@ Adjusted R<sup>2</sup>
 </td>
 <td>
 0.439
+</td>
+<td>
+0.455
+</td>
+<td>
+0.456
 </td>
 </tr>
 <tr>
@@ -985,6 +1287,12 @@ Residual Std. Error
 <td>
 22,679.900 (df = 389)
 </td>
+<td>
+22,362.290 (df = 389)
+</td>
+<td>
+22,347.810 (df = 387)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
@@ -1002,16 +1310,22 @@ F Statistic
 <td>
 45.327<sup>***</sup> (df = 7; 389)
 </td>
+<td>
+48.214<sup>***</sup> (df = 7; 389)
+</td>
+<td>
+37.826<sup>***</sup> (df = 9; 387)
+</td>
 </tr>
 <tr>
-<td colspan="5" style="border-bottom: 1px solid black">
+<td colspan="7" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 <em>Note:</em>
 </td>
-<td colspan="4" style="text-align:right">
+<td colspan="6" style="text-align:right">
 <sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
 </td>
 </tr>
