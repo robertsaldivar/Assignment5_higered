@@ -365,6 +365,9 @@ Faculty_salary_lm10 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD +
 
 summary(Faculty_salary_lm10)
 #This Model meets my expectations in terms of vairable coeffienct
+
+plot(Faculty_salary_lm10)
+# Model 10 meets assumptions for models
 ```
 
 ```{r}
@@ -373,6 +376,9 @@ Faculty_salary_lm11 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD +
 
 summary(Faculty_salary_lm11)
 #This model provide acceptable variable coefficents
+
+plot(Faculty_salary_lm11)
+#Model 11 meets assumptions for models
 ```
 
 
