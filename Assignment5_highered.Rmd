@@ -255,4 +255,53 @@ Faculty_salary_lm2 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + 
 summary(Faculty_salary_lm2)
 
 ```
+```{r}
+# Checking assumptions for model 2
+plot(Faculty_salary_lm2)
+#residuals appear to have a pattern, homoscacity is false in this model
+
+```
+```{r}
+#checking Faculty data for collinearity
+pairs(Faculty_Salary)
+
+# There appears to be some collinearity between Years since PhD and Years of Faculty Service and Faculty Rank
+#will create models with only one of each
+
+```
+
+```{r}
+#Model 3 without Years since PhD
+Faculty_salary_lm3 <- lm(Salary ~ Faculty_Rank + Discipline +  Years_Faculty_Service + Sex, data = Faculty_Salary)
+
+summary(Faculty_salary_lm3)
+```
+
+```{r}
+#Checking assumuntion for model 3
+plot(Faculty_salary_lm3)
+```
+
+```{r}
+#Model 4 without Years of Service
+
+Faculty_salary_lm4 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD +  Sex, data = Faculty_Salary)
+
+summary(Faculty_salary_lm4)
+```
+
+```{r}
+#checking assumptions on model 4
+plot(Faculty_salary_lm4)
+
+```
+
+```{r}
+#Model 5 without Faculty Rank
+Faculty_salary_lm5 <- lm(Salary ~  Discipline + Years_Since_PhD + Years_Faculty_Service + Sex, data = Faculty_Salary)
+
+summary(Faculty_salary_lm5)
+#Bad model because as Years of Faculty Service increase salary goes down $770
+```
+
 
