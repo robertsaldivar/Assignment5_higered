@@ -352,9 +352,28 @@ plot(Faculty_salary_lm8)
 
 ```{r, echo=FALSE}
 # Model 9 Model with interaction and without discipline or Years since phd
-Faculty_salary_lm9 <- lm(Salary ~ Faculty_Rank  + Years_Faculty_Service + Sex + Faculty_Rank*Years_Faculty_Service, data = Faculty_Salary)
+Faculty_salary_lm9 <- lm(Salary ~ Faculty_Rank + Years_Faculty_Service + Sex + Faculty_Rank*Years_Faculty_Service, data = Faculty_Salary)
 
 summary(Faculty_salary_lm9)
 #Variable coefficients for years of service and asstprof:years of service don't make logical sense
+```
+
+```{r, echo=FALSE}
+# AIC results
+
+lm2AIC <- AIC(Faculty_salary_lm2)
+lm3AIC <- AIC(Faculty_salary_lm3)
+lm4AIC <- AIC(Faculty_salary_lm4)
+lm7AIC <- AIC(Faculty_salary_lm7)
+lm8AIC <- AIC(Faculty_salary_lm8)
+lm9AIC <- AIC(Faculty_salary_lm9)
+
+```
+
+```{r, echo=FALSE, results= 'asis'}
+# Create a regression table
+
+stargazer(Faculty_salary_lm2, Faculty_salary_lm3, Faculty_salary_lm7, Faculty_salary_lm8, type = "html")
+
 ```
 
