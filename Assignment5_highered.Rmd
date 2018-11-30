@@ -36,7 +36,7 @@ Faculty_Salary <- read_csv("Faculty salary data (2008 - 2009 survey)-edits.csv")
 PhDs_Clean <- read_csv("PhDs_Clean.csv")
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Inital data exploration grad enrollment
 
 Grad_male_hist <- ggplot(Grads_1967_2015, aes(x=Total_Males)) +
@@ -61,7 +61,7 @@ Grad_female_qq
 ```
 
 
-```{r}
+```{r, echo=FALSE}
 #Trends in Graduate Enrollment
 # Create a graph showing the trend of male and female grad enrollment
 #Graph of total male verse female graph
@@ -108,12 +108,12 @@ private_public_enrollgraph
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Run significance tests of on enrollment data
 ```
 
 
-```{r}
+```{r, echo=FALSE}
 #Wrangle PhD data
 Phd_new <- Phds_1985_2015 %>%
   select('Field_of_study_and_sex','1985_Number', '2000_Number', '2015_Number') %>%
@@ -121,7 +121,7 @@ Phd_new <- Phds_1985_2015 %>%
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Shifts in female PhD recipients
 # Create graph or table of female Phd recipients
 PhDs_Clean$Year <- factor(PhDs_Clean$Year)
@@ -147,12 +147,12 @@ Phd_table
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Run Significance test on PhD data
 ```
 
 
-```{r}
+```{r, echo=FALSE}
 # Explore starting salaries data
 
 median_salary_graph <- ggplot(Median_Salary_Postdocs, aes(x=Field_of_study)) +
@@ -166,7 +166,7 @@ median_salary_graph
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Wrangle starting salaries data
 starting_salaries_employment <- Median_Salary_Postdocs %>%
   select('Field_of_study', 'Employment_Male', 'Employment_female')
@@ -176,7 +176,7 @@ starting_salaries_postdoc <- Median_Salary_Postdocs %>%
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Male and female starting salaries significance testing
 #running a mann-whittney u test for employment salaries male vs female
 employment_salary_test <- wilcox.test(starting_salaries_employment$Employment_Male, starting_salaries_employment$Employment_female)
@@ -194,7 +194,7 @@ postdoc_salary_test
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Exploring professors salaries in
 
 #Creating summary of mean salary based on sex
@@ -218,19 +218,34 @@ prof_salary_graph <- ggplot(Faculty_Salary, aes(x=Salary)) +
 prof_salary_graph
 
 #Creating a scatterplot of the salary data
-prof_salary_pointgraph <- ggplot(Faculty_Salary, aes(x=Years_Faculty_Service, y=Salary)) + 
+prof_salary_pointgraph_Sex <- ggplot(Faculty_Salary, aes(x=Years_Faculty_Service, y=Salary)) + 
   geom_point(aes(color=Sex, pch = Discipline)) +
   theme_classic() +
   facet_wrap(~Sex)
 
-prof_salary_pointgraph
+prof_salary_pointgraph_Sex
 
 #graph does appear to have some linearity
 
+#Create a graph to view linearity by discipline
+prof_salary_pointgraph_Discipline <- ggplot(Faculty_Salary, aes(x=Years_Faculty_Service, y=Salary)) + 
+  geom_point(aes(color=Sex, pch = Discipline)) +
+  theme_classic() +
+  facet_wrap(~Discipline)
+
+prof_salary_pointgraph_Discipline
+
+#Create a graph to view linearity by discipline
+prof_salary_pointgraph_rank <- ggplot(Faculty_Salary, aes(x=Years_Faculty_Service, y=Salary)) + 
+  geom_point(aes(color=Sex, pch = Discipline)) +
+  theme_classic() +
+  facet_wrap(~Faculty_Rank)
+
+prof_salary_pointgraph_rank
 ```
 
 
-```{r}
+```{r, echo=FALSE}
 # Faculty salaries model 1
 
 Faculty_salary_lm1 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex, data = Faculty_Salary)
@@ -239,7 +254,7 @@ summary(Faculty_salary_lm1)
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 # Faculty Salaries model 2
 
 #adjusting the factor levels for Faculty Rank, Discipline and Sex
@@ -255,13 +270,13 @@ Faculty_salary_lm2 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + 
 summary(Faculty_salary_lm2)
 
 ```
-```{r}
+```{r, echo=FALSE}
 # Checking assumptions for model 2
 plot(Faculty_salary_lm2)
 #residuals appear to have a pattern, homoscacity is false in this model
 
 ```
-```{r}
+```{r, echo=FALSE}
 #checking Faculty data for collinearity
 pairs(Faculty_Salary)
 
@@ -270,33 +285,36 @@ pairs(Faculty_Salary)
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Model 3 without Years since PhD
 Faculty_salary_lm3 <- lm(Salary ~ Faculty_Rank + Discipline +  Years_Faculty_Service + Sex, data = Faculty_Salary)
 
 summary(Faculty_salary_lm3)
+
+#not a great model because years of faculty service negatively influence salary
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Checking assumuntion for model 3
 plot(Faculty_salary_lm3)
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Model 4 without Years of Service
 
 Faculty_salary_lm4 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD +  Sex, data = Faculty_Salary)
 
 summary(Faculty_salary_lm4)
+#this model makes sense but there is there is no justification for removing Faculty years of service
 ```
 
-```{r}
+```{r, echo=FALSE}
 #checking assumptions on model 4
 plot(Faculty_salary_lm4)
 
 ```
 
-```{r}
+```{r, echo=FALSE}
 #Model 5 without Faculty Rank
 Faculty_salary_lm5 <- lm(Salary ~  Discipline + Years_Since_PhD + Years_Faculty_Service + Sex, data = Faculty_Salary)
 
@@ -304,4 +322,39 @@ summary(Faculty_salary_lm5)
 #Bad model because as Years of Faculty Service increase salary goes down $770
 ```
 
+```{r, echo=FALSE}
+#Model 6 Model without discipline and Years since phd
+Faculty_salary_lm6 <- lm(Salary ~ Faculty_Rank + Years_Faculty_Service + Sex, data = Faculty_Salary)
+
+summary(Faculty_salary_lm6)
+#Certain variable coeffiencts do not appear as I would expect them
+
+```
+
+
+```{r, echo=FALSE}
+# Model 7 Model with an interaction term between years of faculty service and faculty rank
+Faculty_salary_lm7 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Since_PhD + Years_Faculty_Service + Sex + Faculty_Rank*Years_Faculty_Service, data = Faculty_Salary)
+
+summary(Faculty_salary_lm7)
+#not a great model certain coefficent don't make sense
+
+```
+
+```{r, echo=FALSE}
+# Model 8; Model with interaction term and without Years since PhD
+Faculty_salary_lm8 <- lm(Salary ~ Faculty_Rank + Discipline + Years_Faculty_Service + Sex + Faculty_Rank*Years_Faculty_Service, data = Faculty_Salary)
+
+summary(Faculty_salary_lm8)
+
+plot(Faculty_salary_lm8)
+```
+
+```{r, echo=FALSE}
+# Model 9 Model with interaction and without discipline or Years since phd
+Faculty_salary_lm9 <- lm(Salary ~ Faculty_Rank  + Years_Faculty_Service + Sex + Faculty_Rank*Years_Faculty_Service, data = Faculty_Salary)
+
+summary(Faculty_salary_lm9)
+#Variable coefficients for years of service and asstprof:years of service don't make logical sense
+```
 
