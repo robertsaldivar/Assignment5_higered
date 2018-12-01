@@ -70,7 +70,7 @@ total_enrollment_graph67_15 <- ggplot(Grads_1967_2015, aes(x=Year)) +
   geom_line(aes(y=Total_Males, color="Total_Males")) +
   theme_classic() + 
   labs(x="Year", y="Student Population")+
-  ggtitle("Change in Male and Female Graduate Enrollment from 1967-2015") 
+  ggtitle("Male and Female Graduate Enrollment from 1967-2015")
   
   
 total_enrollment_graph67_15
@@ -109,7 +109,20 @@ private_public_enrollgraph
 ```
 
 ```{r, echo=FALSE}
-#Run significance tests of on enrollment data
+#Run significance tests of on enrollment data male
+male_enrollment_lm <- lm(Total_Males ~ Year, data= Grads_1967_2015)
+summary(male_enrollment_lm)
+
+plot(male_enrollment_lm)
+```
+
+```{r, echo=FALSE}
+#Run significance tests of on enrollment data female
+female_enrollment_lm <- lm(Total_Females ~ Year, data= Grads_1967_2015)
+summary(female_enrollment_lm)
+
+plot(female_enrollment_lm)
+
 ```
 
 
