@@ -161,7 +161,53 @@ Phd_table
 ```
 
 ```{r, echo=FALSE}
-#Run Significance test on PhD data
+#Create new data frames of proportion data
+PhDs_Clean_Percent <- PhDs_Clean %>%
+  select(female_Physical_Sci_Percent, Female_Engineer_Percent, Female_Ed_Percent, Female_Humanities_Percent)
+
+rownames(PhDs_Clean_Percent) <- c("1985", "2000", "2015")
+
+PhDs_Clean_Percent_ps <- PhDs_Clean %>%
+  select(female_Physical_Sci_Percent)
+
+rownames(PhDs_Clean_Percent_ps) <- c("1985", "2000", "2015")
+
+PhDs_Clean_Percent_en <- PhDs_Clean %>%
+  select(Female_Engineer_Percent)
+
+rownames(PhDs_Clean_Percent_en) <- c("1985", "2000", "2015")
+
+PhDs_Clean_Percent_ed <- PhDs_Clean %>%
+  select(Female_Ed_Percent)
+
+rownames(PhDs_Clean_Percent_ed) <- c("1985", "2000", "2015")
+
+PhDs_Clean_Percent_h <- PhDs_Clean %>%
+  select(Female_Humanities_Percent)
+
+rownames(PhDs_Clean_Percent_h) <- c("1985", "2000", "2015")
+
+
+```
+
+
+```{r, echo=FALSE}
+#Run Significance test on PhD data Chi-Square
+PhDs_Chisq <- chisq.test(PhDs_Clean_Percent)
+PhDs_Chisq
+
+PhDs_chisq_ps <- chisq.test(PhDs_Clean_Percent_ps)
+PhDs_chisq_ps
+
+PhDs_Chisq_en <- chisq.test(PhDs_Clean_Percent_en)
+PhDs_Chisq_en
+
+PhDs_Chisq_ed <- chisq.test(PhDs_Clean_Percent_ed)
+PhDs_Chisq_ed
+
+PhDs_Chisq_h <- chisq.test(PhDs_Clean_Percent_h)
+PhDs_Chisq_h
+
 ```
 
 
