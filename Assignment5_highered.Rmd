@@ -304,6 +304,15 @@ prof_salary_pointgraph_rank <- ggplot(Faculty_Salary, aes(x=Years_Faculty_Servic
   facet_wrap(~Faculty_Rank)
 
 prof_salary_pointgraph_rank
+
+#Create a graph without the facet wrap
+prof_salary_pointgraph_total <- ggplot(Faculty_Salary, aes(x=Years_Faculty_Service, y=Salary)) + 
+  geom_point(aes(color=Sex, pch = Discipline)) +
+  theme_classic() 
+
+prof_salary_pointgraph_total
+
+
 ```
 
 
