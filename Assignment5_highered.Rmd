@@ -150,7 +150,9 @@ Phd_graph
 # Graph still needs work
 #Create table showing shift
 PhDs_Clean2 <- PhDs_Clean %>%
-  select(Year, Female_physical_sci, Female_engineering, Female_education, Female_Humanities)
+  select(Female_physical_sci, Female_engineering, Female_education, Female_Humanities)
+
+rownames(PhDs_Clean2) <- c("1985", "2000", "2015")
 
 Phd_table <- kable(PhDs_Clean2) %>%
   kable_styling(bootstrap_options = c("striped"), full_width = FALSE)
@@ -167,47 +169,20 @@ PhDs_Clean_Percent <- PhDs_Clean %>%
 
 rownames(PhDs_Clean_Percent) <- c("1985", "2000", "2015")
 
-PhDs_Clean_Percent_ps <- PhDs_Clean %>%
-  select(female_Physical_Sci_Percent)
+Phd_percent_table <- kable(PhDs_Clean_Percent) %>%
+  kable_styling(bootstrap_options = c("striped"), full_width = FALSE)
 
-rownames(PhDs_Clean_Percent_ps) <- c("1985", "2000", "2015")
-
-PhDs_Clean_Percent_en <- PhDs_Clean %>%
-  select(Female_Engineer_Percent)
-
-rownames(PhDs_Clean_Percent_en) <- c("1985", "2000", "2015")
-
-PhDs_Clean_Percent_ed <- PhDs_Clean %>%
-  select(Female_Ed_Percent)
-
-rownames(PhDs_Clean_Percent_ed) <- c("1985", "2000", "2015")
-
-PhDs_Clean_Percent_h <- PhDs_Clean %>%
-  select(Female_Humanities_Percent)
-
-rownames(PhDs_Clean_Percent_h) <- c("1985", "2000", "2015")
-
+Phd_percent_table
 
 ```
 
 
 ```{r, echo=FALSE}
 #Run Significance test on PhD data Chi-Square
-PhDs_Chisq <- chisq.test(PhDs_Clean_Percent)
+PhDs_Chisq <- chisq.test(PhDs_Clean2)
 PhDs_Chisq
 
-PhDs_chisq_ps <- chisq.test(PhDs_Clean_Percent_ps)
-PhDs_chisq_ps
-
-PhDs_Chisq_en <- chisq.test(PhDs_Clean_Percent_en)
-PhDs_Chisq_en
-
-PhDs_Chisq_ed <- chisq.test(PhDs_Clean_Percent_ed)
-PhDs_Chisq_ed
-
-PhDs_Chisq_h <- chisq.test(PhDs_Clean_Percent_h)
-PhDs_Chisq_h
-
+#There is a significant difference according to Chi-squared test
 ```
 
 
