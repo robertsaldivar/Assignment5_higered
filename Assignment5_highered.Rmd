@@ -231,25 +231,28 @@ starting_salaries_employment <- Median_Salary_Postdocs %>%
   select('Field_of_study', 'Employment_Male', 'Employment_female')
 
 starting_salaries_postdoc <- Median_Salary_Postdocs %>%
-  select('Field_of_study', 'Postdoctoral_study_Male', 'Postdoctoral_study_female')
+  select('Field_of_study', 'Postdoctoral_study_Male', 'Postdoctoral_study_female') %>%
+  as.data.frame()
 
 ```
 
 ```{r, echo=FALSE}
 #Male and female starting salaries significance testing
 #running a mann-whittney u test for employment salaries male vs female
-employment_salary_test <- wilcox.test(starting_salaries_employment$Employment_Male, starting_salaries_employment$Employment_female)
+employment_salary_test <- wilcox.test(starting_salaries_employment$Employment_Male, starting_salaries_employment$Employment_female, paired = TRUE)
 employment_salary_test
 
-#There is not a significant difference between starting female and male salaries
+#There is a significant difference between starting female and male salaries
 
 #running a mann-whittney u test for postdoc salaries male vs female
-postdoc_salary_test <- wilcox.test(starting_salaries_postdoc$Postdoctoral_study_Male, starting_salaries_postdoc$Postoctoral_study_female)
+postdoc_salary_test <- wilcox.test(starting_salaries_postdoc$Postdoctoral_study_Male, starting_salaries_postdoc$Postdoctoral_study_female, paired =TRUE)
 postdoc_salary_test
 
-#There is a significant difference between starting female and male salaries in post docs.
+#There is a significant difference not between starting female and male salaries in post docs.
 
 # using mann-whittney u because we are comparing medians
+
+#This means that after graduation that will not be a significant difference from men in starting salaries if women persue a postdoc but there is a significant difference if women persue employment outside academia
 
 ```
 
