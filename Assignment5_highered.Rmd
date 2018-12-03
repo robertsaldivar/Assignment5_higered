@@ -78,14 +78,18 @@ total_enrollment_graph67_15
 #graph of fulltime male v female enrollment
 full_enroll_graph <- ggplot(Grads_1967_2015, aes(x=Year)) +
   geom_line(aes(y=Females_Full_time, color="Females_Full_time")) + 
-  geom_line(aes(y=Males_Full_time, color="Males_Full_time"))
+  geom_line(aes(y=Males_Full_time, color="Males_Full_time"))+
+  theme_classic() + 
+  labs(x="Year", y="Student Population")
 
 full_enroll_graph
 
 #graph of parttime enrollment male v female
 part_enroll_graph <- ggplot(Grads_1967_2015, aes(x=Year)) +
   geom_line(aes(y=Females_Part_time, color="Females_Part_time")) + 
-  geom_line(aes(y=Males_Part_time, color="Males_Part_time"))
+  geom_line(aes(y=Males_Part_time, color="Males_Part_time"))+
+  theme_classic() + 
+  labs(x="Year", y="Student Population")
 
 part_enroll_graph
 
@@ -94,7 +98,9 @@ full_part_enrollgraph <- ggplot(Grads_1967_2015, aes(x=Year)) +
   geom_line(aes(y=Females_Part_time, color="Females_Part_time")) + 
   geom_line(aes(y=Males_Part_time, color="Males_Part_time")) + 
   geom_line(aes(y=Females_Full_time, color="Females_Full_time")) + 
-  geom_line(aes(y=Males_Full_time, color="Males_Full_time")) 
+  geom_line(aes(y=Males_Full_time, color="Males_Full_time"))  +
+  theme_classic() + 
+  labs(x="Year", y="Student Population")
 
 full_part_enrollgraph
 
@@ -154,8 +160,8 @@ PhDs_Clean2 <- PhDs_Clean %>%
 
 rownames(PhDs_Clean2) <- c("1985", "2000", "2015")
 
-Phd_table <- kable(PhDs_Clean2) %>%
-  kable_styling(bootstrap_options = c("striped"), full_width = FALSE)
+Phd_table <- kable(PhDs_Clean2, col.names = c("Physical Science", "Engineering", "Education", "Humanities and Art"), caption = "PhDs awards to Women by Field, 1985, 2000, and 2015") %>%
+  kable_styling(bootstrap_options = c("striped"), full_width = FALSE) 
 
 Phd_table
 
@@ -182,7 +188,7 @@ Phd_percent_table
 PhDs_Chisq <- chisq.test(PhDs_Clean2)
 PhDs_Chisq
 
-#There is a significant difference according to Chi-squared test
+#There is a significant difference according to Chi-squared
 ```
 
 
@@ -445,7 +451,7 @@ lm11AIC <- AIC(Faculty_salary_lm11)
 ```{r, echo=FALSE, results= 'asis'}
 # Create a regression table
 
-stargazer(Faculty_salary_lm2, Faculty_salary_lm3, Faculty_salary_lm7, Faculty_salary_lm8, Faculty_salary_lm10, Faculty_salary_lm11,  type = "html")
+stargazer(Faculty_salary_lm2, Faculty_salary_lm3, Faculty_salary_lm10, Faculty_salary_lm11,  type = "html")
 
 ```
 
