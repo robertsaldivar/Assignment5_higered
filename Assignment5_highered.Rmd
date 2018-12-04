@@ -446,12 +446,21 @@ lm9AIC <- AIC(Faculty_salary_lm9)
 lm10AIC <- AIC(Faculty_salary_lm10)
 lm11AIC <- AIC(Faculty_salary_lm11)
 
+vif(Faculty_salary_lm2)
+vif(Faculty_salary_lm3)
+vif(Faculty_salary_lm4)
+vif(Faculty_salary_lm7)
+vif(Faculty_salary_lm8)
+vif(Faculty_salary_lm9)
+vif(Faculty_salary_lm10)
+vif(Faculty_salary_lm11)
+
 ```
 
 ```{r, echo=FALSE, results= 'asis'}
 # Create a regression table
 
-stargazer(Faculty_salary_lm2, Faculty_salary_lm3, Faculty_salary_lm10, Faculty_salary_lm11,  type = "html")
+stargazer(Faculty_salary_lm2, Faculty_salary_lm3, Faculty_salary_lm10, Faculty_salary_lm11, title="title",  type = "html")
 
 ```
 
