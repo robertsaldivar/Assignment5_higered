@@ -160,11 +160,15 @@ PhDs_Clean2 <- PhDs_Clean %>%
 
 rownames(PhDs_Clean2) <- c("1985", "2000", "2015")
 
-Phd_table <- kable(PhDs_Clean2, col.names = c("Physical Science", "Engineering", "Education", "Humanities and Art"), caption = "PhDs awards to Women by Field, 1985, 2000, and 2015") %>%
+Phd_table <- kable(PhDs_Clean2, col.names = c("Physical Science", "Engineering", "Education", "Humanities and Art"), caption = "Table 1. PhDs awards to Women by Field, 1985, 2000, and 2015") %>%
   kable_styling(bootstrap_options = c("striped"), full_width = FALSE) 
 
 Phd_table
 
+
+```
+
+```{r}
 
 ```
 
@@ -236,6 +240,21 @@ postdoc_salary_test
 #This means that after graduation that will not be a significant difference from men in starting salaries if women persue a postdoc but there is a significant difference if women persue employment outside academia
 
 ```
+
+```{r, echo=FALSE}
+#Measuring effect size using cliff delta
+salaries_employment_delta <- cliff.delta(starting_salaries_employment$Employment_Male, starting_salaries_employment$Employment_female, paired=TRUE)
+salaries_employment_delta
+
+# the is a small effect size between male and female starting salaries
+
+postdoc_salary_delta <- cliff.delta(starting_salaries_postdoc$Postdoctoral_study_Male, starting_salaries_postdoc$Postdoctoral_study_female, paired=TRUE)
+postdoc_salary_delta
+
+#There is a negligible effect size between male and female postdoc salaries
+
+```
+
 
 ```{r, echo=FALSE}
 #Exploring professors salaries in
@@ -460,7 +479,7 @@ vif(Faculty_salary_lm11)
 ```{r, echo=FALSE, results= 'asis'}
 # Create a regression table
 
-stargazer(Faculty_salary_lm2, Faculty_salary_lm3, Faculty_salary_lm10, Faculty_salary_lm11, title="title",  type = "html")
+stargazer(Faculty_salary_lm11, title="Table 2. Model of Professor Salary",  type = "html")
 
 ```
 
